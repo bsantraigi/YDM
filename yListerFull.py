@@ -159,8 +159,7 @@ def downloaderCoroutine():
     counter = 0
     limit = 4
     prcs = []
-    for l in linkArr:
-        print(l['filename'])
+
     size = len(linkArr)
     done = 0
     for l in linkArr:
@@ -168,10 +167,12 @@ def downloaderCoroutine():
         comm = '\"C:\Program Files (x86)\Internet Download Manager\IDMan.exe\" /n /d \"' + l['url'] + '\" /p \"' + savePath.get() + '\" /f \"' + l['filename'] + '\"'
         # os.system(comm)
         prcs.append(subprocess.Popen(comm))
+        time.sleep(2)
         done = done + 1
         downStatus = int(done*100/size)
         counter = counter + 1
         print("Counter: "+str(counter))
+        print(l['filename'])        
         if(counter >= limit):
             print("Press download again to continue...")
             counter = 0
