@@ -135,25 +135,56 @@ def listParser(list_url, q, progressQ):
     q.put(linkArr)
     # return linkArr
 
+
 # Fire IDM for downloading
 def downloadVideos():
-    if q.empty():
-        print("Download queue not ready yet.")
-        return
+    global allDownComplete
+    global downGenerator
+    print("Start Download next 3 video")
+    if allDownComplete:
+        if q.empty():
+            print("Download queue not ready yet.")
+            return
+        allDownComplete = False
+        downGenerator = downloaderCoroutine()
+        print(next(downGenerator))
+    else:
+        print(next(downGenerator))
+
+def downloaderCoroutine():
+    global downStatus
+    downStatus = 0
+    root.after(100, update_downStatus)
     linkArr = q.get()
     counter = 0
-    limit = 1
+    limit = 4
     prcs = []
     for l in linkArr:
         print(l['filename'])
+    size = len(linkArr)
+    done = 0
     for l in linkArr:
         # C:\Program Files (x86)\Internet Download Manager\IDMan.exe" /n /d <link> /p <path> /f <filename>
         comm = '\"C:\Program Files (x86)\Internet Download Manager\IDMan.exe\" /n /d \"' + l['url'] + '\" /p \"' + savePath.get() + '\" /f \"' + l['filename'] + '\"'
         # os.system(comm)
         prcs.append(subprocess.Popen(comm))
+        done = done + 1
+        downStatus = int(done*100/size)
         counter = counter + 1
+        print("Counter: "+str(counter))
         if(counter >= limit):
-            print("Counter: "+str(counter))
+            print("Press download again to continue...")
+            counter = 0
+            if done == size:
+                allDownComplete = True
+                return
+            yield downStatus
+
+def update_downStatus():
+    downloadPb["value"] = downStatus
+    if(downStatus == 100):
+        return
+    root.after(100, update_downStatus)
 
 def update_bar(parserThread):
     if not progressQ.empty():
@@ -161,6 +192,7 @@ def update_bar(parserThread):
         pb["value"] = p
         if p == 100:            
             parserThread.join()
+            print("Parsing Complete")
             return
     root.after(100, update_bar, parserThread)
 
@@ -179,7 +211,7 @@ def process():
         update_bar(parserThread)
     else:
         print("Nothing to get!!!")
-    print("Ikes!!!")
+    # print("Ikes!!!")
     
 
 root = Tk()
@@ -197,11 +229,11 @@ savePath = StringVar()
 
 
 # Default Path:
-listURL.set("https://www.youtube.com/playlist?list=PLK3nRt7ToxJ3BGUDQ4wBW5yJLe0zoA95s")
+listURL.set("")
 
 # Default Save path
-# savePath.set(os.getcwd())
-savePath.set("C:/Users/Bishal/Shared/Youtube/Texture Maps_3D Tutor")
+savePath.set(os.getcwd())
+# savePath.set("C:/Users/Bishal/Shared/Youtube/")
 
 # Labels
 ttk.Label(mainframe, text = "Playlist URL: ").grid(column = 1, row=1, sticky = E)
@@ -234,6 +266,11 @@ downloadPb["maximum"] = 100
 ttk.Button(mainframe, text = "Change Folder", command = askdirectory).grid(column = 5, row=2, sticky = (W,E))
 ttk.Button(mainframe, text = "Parse", command = process).grid(column = 5, row=3, sticky = (W,E))
 ttk.Button(mainframe, text = "Download", command = downloadVideos).grid(column = 5, row=4, sticky = (W,E))
+
+# Global variables
+downStatus = 0
+allDownComplete = True
+downGenerator = None
 
 for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
 url_entry.focus()
