@@ -1,0 +1,356 @@
+11 November 2015
+Version 0.4.2
+
+[Bugfix] - Fix crash when snippet has no tags property
+[Bugfix] - Fix issue with get_filesize on some streams
+[Bugfix] - Fix bigthumb and bigthumbhd (#118)
+[Feature] - Allow specifying youtube-dl arguments (#115 #120)
+
+-------------------------------------------------------------------------------
+
+
+4 October 2015
+Version 0.4.1
+
+[Bugfix] - Fix Pafy.streams
+
+-------------------------------------------------------------------------------
+
+4 October 2015
+Version 0.4.0
+
+[Major Update!] - Pull in youtube-dl as a dependency, replacing current 
+                  stream code [#109]
+
+This is a major change, and will likely prove controversial, so version
+0.3.76 has been released concurrently with all the changes not related to
+youtube-dl. This makes the code simpler and easier to maintain while fixing
+various bugs, but has some disadvantages.
+
+If this is a problem for you, please use version 0.3.76 AND state your reasons
+and suggestions at issue #110 on Github.
+https://github.com/mps-youtube/pafy/issues/110
+
+-------------------------------------------------------------------------------
+
+4 October 2015
+Version 0.3.76
+
+[Bugfix] - Fix bug in ytdl (#101 #102)
+[Update] - Use better method for matching urls (#104)
+[Bugfix] - Use .opus extension for opus audio (#108)
+
+-------------------------------------------------------------------------------
+
+1 June 2015
+Version 0.3.74
+
+[Bugfix] - Update to use gdata 3 instead of broken gdata 2 (#78)
+[Bugfix] - Fix ZeroDivisionError (#80)
+[Bugfix] - Fix ytdl with non-unicode terminal (#67)
+[Bugfix] - Fix 503 errors by retrying
+[Update] - Added mix method
+
+-------------------------------------------------------------------------------
+
+3 February 2015
+Version 0.3.72
+
+[Bugfix] - Fix issue with country restricted items (#74)
+
+-------------------------------------------------------------------------------
+
+1 February 2015
+Version 0.3.70
+
+[Bugfix] - Fix "Sign in to confirm your age" message on some videos
+
+-------------------------------------------------------------------------------
+
+13 January 2015
+Version 0.3.68
+
+[Update] - changed to LGPL license (was GPL) (#68)
+[Update] - Added getbestvideo function (#70)
+
+-------------------------------------------------------------------------------
+
+23 November 2014
+Version 0.3.66
+
+[Update] - Added new itags for 60fps and VP9 streams (298, 299, 302, 303)
+[Bugfix] - Fixed failure on certain video items (#59)
+[Update] - Added start/end data for playlist items (Dav1dde) (#62, #63)
+
+-------------------------------------------------------------------------------
+
+19 October 2014
+Version 0.3.64
+
+[Update] - Cache javascript file locally to temp dir (less fetching)
+[Update] - Added itag 278 (low-res VP9)
+[Feature] - Retrieve DASH streams (more streams, higher quality audio)
+[Feature] - added remux_audio parameter to download function to remux audio
+            files if ffmpeg or avconv is installed (better compatibility)
+
+-------------------------------------------------------------------------------
+
+27 August 2014
+Version 0.3.62
+
+[Feature] - Added url_https property to return https url
+
+-------------------------------------------------------------------------------
+
+15 August 2014
+Version 0.3.60
+
+[Bugfix] - Add Opus audio itags 249/250/251
+[Bugfix] - Warn instead of fail on unrecognised itags
+
+-------------------------------------------------------------------------------
+
+24 July 2014
+Version 0.3.58
+
+[Feature] - Added cancel download function (stav) (#47)
+[Bugfix] - Update signature decryption to work with YouTube changes (#48)
+
+-------------------------------------------------------------------------------
+
+16 July 2014
+Version 0.3.56
+
+[Bugfix] - Update signature decryption to work with YouTube changes (#43)
+
+-------------------------------------------------------------------------------
+
+12 July 2014
+Version 0.3.54
+
+[Bufix] - Fix issues with Windows filenames (issues #35, #38, #39)
+
+-------------------------------------------------------------------------------
+
+22 June 2014
+Version 0.3.52
+
+[Bugfix] - Added unrecognised itags (issue #34)
+
+-------------------------------------------------------------------------------
+
+19 June 2014
+Version 0.3.50
+
+[Feature] - Resume partially downloaded files (issue #32)
+[Bugfix] - Fix javascript function extraction
+
+-------------------------------------------------------------------------------
+
+12 June 2014
+Version 0.3.48
+
+[Bugfix] - Added new itag (271)
+
+-------------------------------------------------------------------------------
+
+5 June 2014
+Version 0.3.46 - Bugfix release
+
+[Bugfix] - Fix truncated rawbitrate stream property
+[Bugfix] - Use unicode literals in ytdl (#31)
+
+-------------------------------------------------------------------------------
+
+21 May 2014
+Version 0.3.44
+
+[Bugfix] - Fixed m4astreams and oggstreams return empty lists
+[Bugfix] - Fixed get_playlist() returns a tuple for playlist_id
+[Bugfix] - Fixed TypeError on getting url (issue #30)
+[Update] - Properties now return Unicode in both Python 2 and 3
+[Update] - Package now includes wheel (PEP 427)
+
+-------------------------------------------------------------------------------
+
+30 April 2014
+Version 0.3.42
+
+[Feature] - Added support for age-restricted videos with encrypted signatures
+[Feature] - Added likes and dislikes properties
+[Bugfix] - Fix incorrectly formatted published date
+[Bugfix] - Fix incorrect media type for itags 242 - 248
+
+-------------------------------------------------------------------------------
+
+5 March 2014
+Version 0.3.41
+
+[Feature] - Fetch updated time for playlist items
+[Feature] - Added Python 2.6 compatibility (requires argparse from PyPI)
+[Bugfix] - Handle location-specific number formats (thousands separator)
+
+-------------------------------------------------------------------------------
+
+2 March 2014
+Version 0.3.39 
+
+[Feature] - Add username property (fetched from gdata)
+[Update] - Improved and documented get_playlist() feature
+
+-------------------------------------------------------------------------------
+
+27 February 2014
+Version 0.3.38
+
+[Update] - Use http instead of https
+[Update] - Add missing itags 167-170 
+
+-------------------------------------------------------------------------------
+
+25 February 2014
+Version 0.3.37
+
+[Feature] - Added signature, gdata, basic and size parameters to new()
+    These parameters can be used to restrict the data fetched on instantiation 
+    of Pafy objects and can significantly reduce the time taken to create new
+    instances. Any missing data will be fetched when needed.
+
+[Feature] - Javascript is released internally once functions are extracted
+    Smaller memory footprint for Pafy / Stream objects
+
+[Bugfix] - release unneeded internal data, smaller pafy objects
+[Update] - getbest and getbestaudio() return None if no streams available
+[Update] - Pafy raises ValueError or IOError.  RuntimeError removed
+[Update] - len() has been removed.  use .length property instead
+
+-------------------------------------------------------------------------------
+
+20 February 2014
+Version 0.3.36
+
+[Feature] - Added published date field
+[Bugfix] - Added missing notes field to itag 264 
+
+-------------------------------------------------------------------------------
+
+17 February 2014
+Version 0.3.35
+
+[Feature] - Added notes attribute to Stream class for further stream info
+[Feature] - Added function to fetch playlists (leokewitz)
+[Bugfix] - Add missing itag (83)
+
+-------------------------------------------------------------------------------
+
+11 February 2014
+Version 0.3.34
+
+[Bugfix] - getbest() and getbestaudio() now return False if no streams available
+
+-------------------------------------------------------------------------------
+
+7 February 2014
+Version 0.3.33
+Authors: leokewitz, np1
+
+[Feature] - Store html5player js data in memory to reduce repeat fetches
+[Feature] - Removed redundant looping in js function extraction
+[Bugfix] - Display correct units for data rate
+
+-------------------------------------------------------------------------------
+
+4 February 2014
+Version 0.3.31
+Authors: np1
+
+[Bugfix] - Handle error getting stream map
+[Bugfix] - Handle dollar character in js function name
+
+-------------------------------------------------------------------------------
+
+3 February 2014
+Version 0.3.30
+Authors: np1
+
+[Bugfix] - Fix regex for decrypting signatures
+[Feature] - Added callback function for status reporting
+
+-------------------------------------------------------------------------------
+
+14 January 2014
+Version 0.3.26
+Authors: np1
+
+[Feature] - Change dimensions property from (str, str) to (int, int)
+[Bugfix] - Replace bad characters in filenames
+
+-------------------------------------------------------------------------------
+
+15 December 2013
+Version 0.3.25
+Authors: np1
+
+[Feature] Get video category metadata.
+
+-------------------------------------------------------------------------------
+
+12 December 2013
+Version 0.3.24
+Authors: hugovk, np1
+
+[Feature] Download function to return the name of file saved
+[Feature] Get video description
+[Bugfix] Fix for js file without protocol specifier
+
+-------------------------------------------------------------------------------
+
+14 November 2013
+Version 0.3.23
+Authors: davidfischer-ch, np1
+
+[Bugfix] Fixed issue when no keywords specified for YouTube video
+[Bugfix] added UTF8 encoding declaration
+[Bugfix] Update shebang to /usr/bin/env python instead of /usr/bin/python
+[Docs] Added README to PyPI
+
+-------------------------------------------------------------------------------
+
+27 October 2013
+Version 0.3.22
+Authors: np1
+
+[Feature] Added Pafy.oggstreams and Pafy.m4astreams codec specific stream lists
+[Feature] Added Pafy.dimensions attribute to return resolution as a 2-tuple
+[Feature] Added Pafy.rawbitrate attribute for more precise bitrates of audio streams
+[Feature] Added Pafy.threed attribute to reflect whether a stream is 3D 
+[Feature] Added Stream.__repr__() to output more meaningful info when printing Stream objects
+[Bugfix] Fix for getbest() and getbestaudio() returning wrong filetype in some cases
+[Bugfix] Fixed some incorrect reporting of resolutions
+[Docs] Using reStructured text instead of GitHub markdown for README
+[Docs] Added full documentation at http://pythonhosted.org/Pafy/
+
+-------------------------------------------------------------------------------
+
+19 October 2013
+Version 0.3.20
+Authors: np1
+
+[Feature] Added support for audio-only stream download (m4a and ogg vorbis)
+[Feature] Added support for video-only stream download (m4v)
+[Feature] Added bitrate property for audio streams
+[Feature] Added quality property to return bitrate or resolution depending on stream type (audio or video)
+[Feature] Updated ytdl command line tool to incorporate download choices from above streams
+[Feature] Added getbestaudio() function to automatically select best quality audio stream
+[Bugfix] Allow downloading of videos with no title
+[Docs] Updated documentation for pafy and ytdl demonstrating usage of above features (README.md)
+[Docs] Added this changelog file
+
+Notes:
+
+This version should be fully backward compatible with the previous version.
+Pafy objects retain the pafy.streams list containing regular streams as before (video + audio)
+In addition, there are now two new stream lists;
+	pafy.audiostreams is a list of audio only streams (m4a and ogg vorbis where available)
+	pafy.videostreams is a list of video only streams (m4v)
+Further, there is a pafy.allstreams list containing the union of all three aforementioned lists

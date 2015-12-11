@@ -1,0 +1,13 @@
+MANIFEST
+doc/_build/
+*.help
+.tox
+.coverage
+htmlcov/
+dev/
+/dist
+.test
+*.pyc
+.pypi
+vi.py
+__pycache__

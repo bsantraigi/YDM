@@ -1,0 +1,28 @@
+language: python
+python:
+    - "2.6"
+    - "2.7"
+    - "3.3"
+    - "3.4"
+
+install:
+    - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install unittest2; fi
+    - pip install coveralls > /dev/null
+    - pip install youtube-dl > /dev/null
+
+before_script:
+    - printenv
+    - ls -l
+    - coverage debug sys
+    - pip install wheel
+    - python setup.py sdist bdist_wheel
+    - python setup.py install
+
+script:
+    coverage run --omit="/home/travis/virtualenv/python2.6.9/lib/python2.6/site-packages/unittest2/*,/home/travis/virtualenv/python2.6.9/lib/python2.6/site-packages/six.py,/home/travis/virtualenv/python2.6.9/lib/python2.6/site-packages/argparse.py" tests/test.py
+
+after_success:
+    - coverage report
+    - coveralls
+
+sudo: false
