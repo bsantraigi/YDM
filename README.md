@@ -1,5 +1,4 @@
 # YDM (Youtube Playlist Downloader Addon for IDM)
------------
 
 YDM is an open source addon for **Internet Download Manager** (IDM) for downloading videos from Youtube playlists.
 
@@ -28,7 +27,7 @@ This program is only for `Windows` and requires `Python 3.4` or greater installe
 
 If your system meets all the requirements downlaod this program by clicking the <a href="https://github.com/studiobytestorm/YDM/archive/master.zip">![downloadbutton](http://i.stack.imgur.com/0SWhD.png)</a> button above. Unzip it into a folder say `C:\YDM`. Then open command prompt and run 
 
-```python
+```
 C:\Users\Name> cd C:\YDM
 C:\YDM> python yListerFull.py
 ```
@@ -37,7 +36,7 @@ C:\YDM> python yListerFull.py
 
 You can install `Python 3.4` from [here](https://www.python.org/). Once you have installed Python you can install `youtube-dl` using pip.
 
-```python
+```
 pip install youtube-dl
 ```
 
@@ -45,7 +44,7 @@ pip install youtube-dl
 ## <a name="usage"></a>Usage Example
 Here is an example of how to use this program.
 
-```python
+```
 C:\YDM> python yListerFull.py
 ```
 Once you execute the above line it will open up a GUI as shown below. Enter an Youtube playlist url and the path to save the downloaded files. Then press the parse button. Once parsing is complete press download button to start downloading first 4 videos and once finished click download again to continue downloading the next 4 videos and so on.
