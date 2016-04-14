@@ -20,7 +20,6 @@ import re
 import urllib.request
 import urllib.error
 import sys
-import time
 from pafy import pafy
 from tkinter import *
 from tkinter import ttk

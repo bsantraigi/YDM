@@ -1,5 +1,7 @@
-from tkinter import * #Tk, Canvas
-from tkinter import ttk
+from tkinter import *   # from x import * is bad practice
+from tkinter.ttk import *
+
+# http://tkinter.unpythonic.net/wiki/VerticalScrolledFrame
 
 class VerticalScrolledFrame(Frame):
     """A pure Tkinter scrollable frame that actually works!
@@ -12,7 +14,7 @@ class VerticalScrolledFrame(Frame):
         Frame.__init__(self, parent, *args, **kw)            
 
         # create a canvas object and a vertical scrollbar for scrolling it
-        vscrollbar = ttk.Scrollbar(self, orient=VERTICAL)
+        vscrollbar = Scrollbar(self, orient=VERTICAL)
         vscrollbar.pack(fill=Y, side=RIGHT, expand=FALSE)
         canvas = Canvas(self, bd=0, highlightthickness=0,
                         yscrollcommand=vscrollbar.set)
@@ -45,54 +47,22 @@ class VerticalScrolledFrame(Frame):
                 canvas.itemconfigure(interior_id, width=canvas.winfo_width())
         canvas.bind('<Configure>', _configure_canvas)
 
-# http://tkinter.unpythonic.net/wiki/VerticalScrolledFrame
-def configure(*args):
-	canvas.configure(scrollregion=canvas.bbox("all"),width=50,height=50)
 
-class SampleApp(Tk):
-    def __init__(self, *args, **kwargs):
-        root = Tk.__init__(self, *args, **kwargs)
+if __name__ == "__main__":
 
-
-        self.frame = VerticalScrolledFrame(root)
-        self.frame.pack()
-        self.label = Label(text="Shrink the window to activate the scrollbar.")
-        self.label.pack()
-        buttons = []
-        for i in range(10):
-            buttons.append(Button(self.frame.interior, text="Button " + str(i)))
-            buttons[-1].pack()
+    class SampleApp(Tk):
+        def __init__(self, *args, **kwargs):
+            root = Tk.__init__(self, *args, **kwargs)
 
 
+            self.frame = VerticalScrolledFrame(root)
+            self.frame.pack()
+            self.label = Label(text="Shrink the window to activate the scrollbar.")
+            self.label.pack()
+            buttons = []
+            for i in range(10):
+                buttons.append(Button(self.frame.interior, text="Button " + str(i)))
+                buttons[-1].pack()
 
-def anotherWin(*args):
-	app = SampleApp()
-	app.mainloop()
-	# frame = VerticalScrolledFrame(t)
-	# frame.pack()
-	# label = Label(text="Shrink the window to activate the scrollbar.")
-	# label.pack()
-
-	# downListChecks = []
-	# for l in range(10):
-	#     iv = IntVar()
-	#     iv.set(1)
-	#     # iv.trace(callback = printChecks, mode = "w")
-	#     downListChecks.append(iv)
-	#     c = Checkbutton(frame.interior, text = "Check {}".format(l), variable=iv)
-	#     # c.grid(column=0, row=1 + l, sticky=W)
-	#     c.pack()
-
-
-root = Tk()
-
-# Frame 1
-mainFrame = ttk.Frame(root)
-mainFrame.grid(column=0, row=0, sticky=(N, W, E, S))
-
-b1 = ttk.Button(mainFrame, text = "Click me", command=anotherWin)
-b1.grid(column=0, row=0, sticky=E)
-
-
-
-root.mainloop()
+    app = SampleApp()
+    app.mainloop()
