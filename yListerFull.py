@@ -66,12 +66,17 @@ def crawl(url):
             yPL = str(PL)
             if '&' in yPL:
                 yPL_amp = yPL.index('&')
-            final_url.append('http://www.youtube.com/' + yPL[:yPL_amp])
+            elif '\\u0026' in yPL:
+                yPL_amp = yPL.index('\\u0026')
+
+            if yPL_amp > 0:
+                final_url.append('http://www.youtube.com/' + yPL[:yPL_amp].replace('\\', ''))
                 
         i = 0
         while i < len(mat):
 #             sys.stdout.write(final_url[i] + '\n')
             i = i + 1
+        print(*final_url, sep = '\n')
         return final_url, len(mat)
         
     else:
