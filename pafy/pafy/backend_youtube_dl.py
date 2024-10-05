@@ -47,8 +47,8 @@ class YtdlPafy(BasePafy):
         self._rating = self._ydl_info['average_rating']
         self._length = self._ydl_info['duration']
         self._viewcount = self._ydl_info['view_count']
-        self._likes = self._ydl_info['like_count']
-        self._dislikes = self._ydl_info['dislike_count']
+        #self._likes = self._ydl_info['like_count']
+        #self._dislikes = self._ydl_info['dislike_count']
         self._username = self._ydl_info['uploader_id']
         self._category = self._ydl_info['categories'][0]
         self._bigthumb = g.urls['bigthumb'] % self.videoid
