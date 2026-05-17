@@ -1,64 +1,58 @@
-# YDM (Youtube Playlist Downloader Addon for IDM)
+# YDM Pro (High-Performance YouTube Playlist Downloader)
 
-YDM is an open source addon for **Internet Download Manager** (IDM) for downloading videos from Youtube playlists.
+**YDM Pro** is a robust, threaded downloader built for power users. It moves beyond simple scripts to offer a full dashboard for managing YouTube playlist downloads with support for 4K/8K quality, concurrent downloading, and pause/resume capabilities.
 
-## Table of Contents
-* [Features](#features)
-* [Requirements](#requirements)
-* [Installation](#installation)
-* [Usage Example](#usage)
-* [Team Members](#team-members)
+## 🚀 Key Features
 
-## <a name="features"></a>Features
-* Download any playlists from Youtube
-* Choose which videos to download
-* Save all videos to a folder
-* Uses IDM
+*   **📺 High Quality Support**: Download videos in **4K, 2K, 1080p, 720p**, or 480p.
+    *   *Automatically merges best video+audio streams using FFmpeg.*
+*   **⚡ Concurrent Parsing & Downloading**: "Stream Parsing" engine lets you start downloading videos the moment they are found, without waiting for the whole playlist to parse.
+*   **📋 Advanced Queue Management**:
+    *   **Dashboard View**: See real-time status, size, progress, speed, and ETA for every video in a scrollable table.
+    *   **Pause/Resume**: Immediately pause active downloads (network cut? no problem) and resume exactly where you left off.
+    *   **Retry Failed**: One-click retry for any videos that failed due to network errors.
+    *   **Selection**: Check/Uncheck specific videos to skip ones you don't need.
+*   **🔗 Universal Support**: Works with Playlist URLs and Single Video URLs.
 
-## <a name="requirements"></a>Requirements
-This program is only for `Windows` and requires `Python 3.4` or greater installed in your system. It also need the following python modules to be installed in your system. 
+## 🛠️ Requirements
 
-* `youtube-dl`
+*   **Python 3.8+**
+*   **FFmpeg** (Required for 1080p+ merging):
+    *   Download from [ffmpeg.org](https://ffmpeg.org/download.html).
+    *   The app is pre-configured to look in `C:\ffmpeg-...\bin`, or just add it to your System PATH.
+*   **Python Modules**:
+    ```bash
+    pip install yt-dlp
+    ```
+    *Note: `tkinter` is usually included with Python.*
 
+## 📦 Installation & Usage
 
-## <a name="installation"></a>Installation
+1.  **Clone/Download** this repository.
+2.  **Install dependencies** (see above).
+3.  **Run the application**:
+    ```bash
+    python yListerFull.py
+    ```
 
-**Installing the program**
+### How to Use
+1.  **Paste URL**: Enter a YouTube Playlist or Video URL.
+2.  **Select Quality**: Choose your target resolution (e.g., "1080p (HD)").
+3.  **Pars/Start**:
+    *   Click **Parse** to load the video list.
+    *   Check **Auto-Start Download** to begin immediately.
+4.  **Manage**:
+    *   Use the [☑] checkboxes to skip videos.
+    *   Use **Pause Queue** / **Resume Queue** to control bandwidth.
+    *   Use **Retry Failed** if your internet drops.
 
-If your system meets all the requirements downlaod this program by clicking the <a href="https://github.com/studiobytestorm/YDM/archive/master.zip">![downloadbutton](http://i.stack.imgur.com/0SWhD.png)</a> button above. Unzip it into a folder say `C:\YDM`. Then open command prompt and run 
+## 📸 Screenshots
 
-```
-C:\Users\Name> cd C:\YDM
-C:\YDM> python yListerFull.py
-```
+*(Add your screenshot here)*
 
-**Installing the requirements**
+## ⚠️ Note on IDM
+This version supersedes the old IDM-based tool. `yt-dlp` + FFmpeg is superior because it can download separate video/audio streams (Dash) and merge them, allowing for **1080p/4K** downloads which IDM often cannot handle smoothly for YouTube.
 
-You can install `Python 3.4` from [here](https://www.python.org/). Once you have installed Python you can install `youtube-dl` using pip.
-
-```
-pip install youtube-dl
-```
-
-
-## <a name="usage"></a>Usage Example
-Here is an example of how to use this program.
-
-```
-C:\YDM> python yListerFull.py
-```
-Once you execute the above line it will open up a GUI as shown below. Enter an Youtube playlist url and the path to save the downloaded files. Then press the parse button. Once parsing is complete press download button to start downloading first 4 videos and once finished click download again to continue downloading the next 4 videos and so on.
-
-**Here's a screeshot...**
-
-<img src="http://i.stack.imgur.com/R0NRb.png" alt="Screeshot1" style="width: 100%;"/>
-
-## <a name="team-members"></a>Contributors
-* "Bishal Santra" <bsantraigi@gmail.com>
-
-## <a name="refs"></a>References
-* [rg3/youtube-dl](https://github.com/rg3/youtube-dl/)
-* [mps-youtube/pafy](https://github.com/mps-youtube/pafy)
-
-
-----------
+## 🤝 Contributors
+*   Original Author: [bsantraigi](https://github.com/bsantraigi)
+*   Current Maintained Version: **YDM Pro**
